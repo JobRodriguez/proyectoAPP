@@ -1,61 +1,145 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name = "format-detection" content = "telephone=no"/>
-        <!--
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <!--
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width;" />
         -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <link rel="stylesheet" type="text/css" href="css/topcoat-mobile-light.min.css">
-        <title>Light Control</title>
-        <script src="js/jquery-1.9.1.min.js"></script>
+    <meta name="viewport"
+        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/topcoat-mobile-light.min.css">
+    <title>Light Control</title>
+    <script src="js/jquery-1.9.1.min.js"></script>
 
-    </head>
-    <body>
-        <div class="topcoat-navigation-bar">
-            <div class="topcoat-navigation-bar__item center full">
-                <h1 class="topcoat-navigation-bar__title">LED</h1>
+    <link rel="stylesheet" href="css/principal.css">
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <script src="https://kit.fontawesome.com/f43dcd5878.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <div id="encabezado"></div>
+
+    <div id="apartados">
+        <ul class="nav nav-tabs">
+            <input type="checkbox" id="check">
+            <label for="check">
+                <i class="fas fa-bars" id="btn"></i>
+                <i class="fas fa-times" id="cancel"></i>
+            </label>
+
+            <div class="sidebar">
+                <header>Opciones manuales</header>
+                <a href="#">
+                    <i class="fas fa-qrcode"></i>
+                    <label for="">Extractor</label>
+                </a>
+                <a href="#">
+                    <i class="far fa-question-circle"></i>
+                    <label for="">Aspersores de agua</label>
+                </a>
+                <a href="#">
+                    <i class="fas fa-sliders-h"></i>
+                    <label for="">Puerta de emergencia</label>
+                </a>
             </div>
+            <li id="opcLab" class="nav-item">
+                <a class="nav-link" aria-current="page" onclick="functionUno()"><i id="lab"
+                        class="fa-solid fa-flask-vial"></i></a>
+            </li>
+
+            <li id="opcConect" class="nav-item">
+                <a class="nav-link" onclick="functionDos()" tabindex="-1" aria-disabled="true"><i id="conect"
+                        class="fa-brands fa-bluetooth"></i></a>
+            </li>
+        </ul>
+    </div>
+    <div id="div1">
+
+        <div id="title">Laboratorio de química</div>
+        <div id="temperaturaP">
         </div>
-        <div id="connectionScreen">
-            <ul id="deviceList" class="topcoat-list">      
-            </ul>
-            <div style="margin: 10px">            
-                <button class="topcoat-button" id="refreshButton">Refresh</button>
-            </div>            
+        <div id="humedadP">
         </div>
-        
-        <div id="colorScreen">
-            <div>
-                Use sliders to set color.
-            </div>
-            <div class="rangeDiv">
-                <input type="range" min="0" max="255" value="0" name="red" id="red" class="topcoat-range"/>
-            </div>
-            <div class="rangeDiv">
-                <input type="range" min="0" max="255" value="0" name="green" id="green" class="topcoat-range"/>
-            </div>
-            <div class="rangeDiv">
-                <input type="range" min="0" max="255" value="0" name="blue" id="blue" class="topcoat-range"/>
-            </div>
+        <div id="gasP">
+        </div>
+        <div id="luzP"></div>
+        <div id="title2">Velocidad del ventilador</div>
+        <div id="velocidad">
+            <div id="vel1">1</div>
+            <div id="vel2">2</div>
+            <div id="vel3">3</div>
+            <button id="off"></button>
             <input type="button" name="das" id="boton" value="prueba">
-            <div id="rgbText">
-                &nbsp;
-            </div>
-            <div id="previewColor">
-            </div>
-            <p>
-                <a class="topcoat-button--large" id="disconnectButton">Disconnect</a>
-            </p>
+
         </div>
-        <div id="messageDiv">        
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/underscore-min.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+
+    </div>
+    <div id="div2">
+        <div class="app">
+            <h1>Bluetooth Serial Chat</h1>
+            <div id="mainPage">
+                <ul id="deviceList">
+                </ul>
+                <button id="refreshButton">Refresh</button>
+            </div>
+
+            <div id="resultDiv">
+            </div>
+            <div>
+
+                <input type="text" name="text" id="gas">
+                <input type="text" id="messageInput" value="Hello" />
+                <button id="sendButton">Send</button>
+            </div>
+            <button id="disconnectButton">Disconnect</button>
+            <div id="statusDiv"></div>
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">
+    app.initialize();
+</script>
+<script>
+       function functionUno(){
+        var x = document.getElementById("div1");
+        var y= document.getElementById("div2");
+        if(x.style.display=="none" || y.style.display=="block"){
+            y.style.display = "none";
+            x.style.display= "block";
+        }else{
+            x.style.display="block";
+        }
+    }
+    function functionDos(){
+        var x = document.getElementById("div1");
+        var y= document.getElementById("div2");
+        if(x.style.display=="block" || y.style.display=="none"){
+            y.style.display = "block";
+            x.style.display= "none";
+        }else{
+            y.style.display="block"
+        }
+    }
+    element=document.getElementById("div1");
+    element2=document.getElementById("div2");
+
+    element.style.display= "block";
+    element2.style.display="none";
+
+
+</script>
+
+
 </html>

@@ -1,125 +1,149 @@
-/* jshint quotmark: false, unused: vars, browser: true */
-/* global cordova, console, $, bluetoothSerial, _, refreshButton, deviceList, previewColor, red, green, blue, disconnectButton, connectionScreen, colorScreen, rgbText, messageDiv */
+// (c) 2013-2015 Don Coleman
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/* global mainPage, deviceList, refreshButton, statusDiv */
+/* global detailPage, resultDiv, messageInput, sendButton, disconnectButton */
+/* global cordova, bluetoothSerial  */
+/* jshint browser: true , devel: true*/
 'use strict';
 
 var app = {
-    initialize: function() {
-        this.bind();
+    initialize: function () {
+        this.bindEvents();
+        this.showMainPage();
     },
-    bind: function() {
-        document.addEventListener('deviceready', this.deviceready, false);
-        colorScreen.hidden = true;
-    },
-    deviceready: function() {
+    bindEvents: function () {
 
-        // wire buttons to functions
-        deviceList.ontouchstart = app.connect; // assume not scrolling
-        refreshButton.ontouchstart = app.list;
-        disconnectButton.ontouchstart = app.disconnect;
-
-        // throttle changes
-        var throttledOnColorChange = _.throttle(app.onColorChange, 200);
-        $('input').on('change', throttledOnColorChange);
-        
-        app.list();
-    },
-    list: function(event) {
-        deviceList.firstChild.innerHTML = "Discovering...";
-        app.setStatus("Looking for Bluetooth Devices...");
-        
-        bluetoothSerial.list(app.ondevicelist, app.generateFailureFunction("List Failed"));
-    },
-    connect: function (e) {
-        app.setStatus("Connecting...");
-        var device = e.target.getAttribute('deviceId');
-        console.log("Requesting connection to " + device);
-        bluetoothSerial.connect(device, app.onconnect, app.ondisconnect);        
-    },
-    disconnect: function(event) {
-        if (event) {
-            event.preventDefault();
+        var TOUCH_START = 'touchstart';
+        if (window.navigator.msPointerEnabled) { // windows phone
+            TOUCH_START = 'MSPointerDown';
         }
-
-        app.setStatus("Disconnecting...");
-        bluetoothSerial.disconnect(app.ondisconnect);
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+        refreshButton.addEventListener(TOUCH_START, this.refreshDeviceList, false);
+        sendButton.addEventListener(TOUCH_START, this.sendData, false);
+        disconnectButton.addEventListener(TOUCH_START, this.disconnect, false);
+        deviceList.addEventListener('touchstart', this.connect, false);
     },
-    onconnect: function() {
-        connectionScreen.hidden = true;
-        colorScreen.hidden = false;
-        app.setStatus("Connected.");
+    onDeviceReady: function () {
+        app.refreshDeviceList();
     },
-    ondisconnect: function() {
-        connectionScreen.hidden = false;
-        colorScreen.hidden = true;
-        app.setStatus("Disconnected.");
+    refreshDeviceList: function () {
+        bluetoothSerial.list(app.onDeviceList, app.onError);
     },
-
-
-
-    onColorChange: function (evt) {
-        previewColor.innerText = "4";
-        app.sendToArduino("1");
-    },
-    sendToArduino: function(c) {
-        bluetoothSerial.write("c" + c + "\n");
-    },
-
-
-
-    timeoutId: 0,
-    setStatus: function(status) {
-        if (app.timeoutId) {
-            clearTimeout(app.timeoutId);
-        }
-        messageDiv.innerText = status;
-        app.timeoutId = setTimeout(function() { messageDiv.innerText = ""; }, 4000);
-    },
-    ondevicelist: function(devices) {
-        var listItem, deviceId;
+    onDeviceList: function (devices) {
+        var option;
 
         // remove existing devices
         deviceList.innerHTML = "";
         app.setStatus("");
-        
-        devices.forEach(function(device) {
-            listItem = document.createElement('li');
-            listItem.className = "topcoat-list__item";
-            if (device.hasOwnProperty("uuid")) { // TODO https://github.com/don/BluetoothSerial/issues/5
-                deviceId = device.uuid;
-            } else if (device.hasOwnProperty("address")) {
-                deviceId = device.address;
+
+        devices.forEach(function (device) {
+
+            var listItem = document.createElement('li'),
+                html = '<b>' + device.name + '</b><br/>' + device.id;
+
+            listItem.innerHTML = html;
+
+            if (cordova.platformId === 'windowsphone') {
+                // This is a temporary hack until I get the list tap working
+                var button = document.createElement('button');
+                button.innerHTML = "Connect";
+                button.addEventListener('click', app.connect, false);
+                button.dataset = {};
+                button.dataset.deviceId = device.id;
+                listItem.appendChild(button);
             } else {
-                deviceId = "ERROR " + JSON.stringify(device);
+                listItem.dataset.deviceId = device.id;
             }
-            listItem.setAttribute('deviceId', device.address);            
-            listItem.innerHTML = device.name + "<br/><i>" + deviceId + "</i>";
             deviceList.appendChild(listItem);
         });
 
         if (devices.length === 0) {
-            
+
+            option = document.createElement('option');
+            option.innerHTML = "No Bluetooth Devices";
+            deviceList.appendChild(option);
+
             if (cordova.platformId === "ios") { // BLE
                 app.setStatus("No Bluetooth Peripherals Discovered.");
-            } else { // Android
+            } else { // Android or Windows Phone
                 app.setStatus("Please Pair a Bluetooth Device.");
             }
 
         } else {
             app.setStatus("Found " + devices.length + " device" + (devices.length === 1 ? "." : "s."));
         }
+
     },
-    generateFailureFunction: function(message) {
-        var func = function(reason) {
-            var details = "";
-            if (reason) {
-                details += ": " + JSON.stringify(reason);
-            }
-            app.setStatus(message + details);
+    connect: function (e) {
+        var onConnect = function () {
+            // subscribe for incoming data
+            bluetoothSerial.subscribe('\n', app.onData, app.onError);
+
+            resultDiv.innerHTML = "";
+            app.setStatus("Connected");
+            app.showDetailPage();
         };
-        return func;
+
+        var deviceId = e.target.dataset.deviceId;
+        if (!deviceId) { // try the parent
+            deviceId = e.target.parentNode.dataset.deviceId;
+        }
+
+        bluetoothSerial.connect(deviceId, onConnect, app.onError);
+    },
+    sendToArduino: function (c) {
+        bluetoothSerial.write(c);
+    },
+    onData: function (data) { // data received from Arduino
+        console.log(data);
+
+        const splitString = data.split(" ");
+
+        console.log(splitString);
+        resultDiv.innerHTML = "Gas = " + splitString[0] + "<br>Luz = " + splitString[2];
+        ;
+    },
+
+    disconnect: function (event) {
+        bluetoothSerial.disconnect(app.showMainPage, app.onError);
+    },
+    showMainPage: function () {
+        mainPage.style.display = "";
+        detailPage.style.display = "none";
+    },
+    showDetailPage: function () {
+        mainPage.style.display = "none";
+        detailPage.style.display = "";
+    },
+    setStatus: function (message) {
+        console.log(message);
+
+        window.clearTimeout(app.statusTimeout);
+        statusDiv.innerHTML = message;
+        statusDiv.className = 'fadein';
+
+        // automatically clear the status with a timer
+        app.statusTimeout = setTimeout(function () {
+            statusDiv.className = 'fadeout';
+        }, 5000);
+    },
+    onError: function (reason) {
+        alert("ERROR: " + reason); // real apps should use notification.alert
     }
 };
-
-   $("#boton").click(function(){
-        app.sendToArduino("10");
-   });
+$("#boton").click(function () {
+    app.sendToArduino("1");
+});
+///////
