@@ -13,15 +13,17 @@
     <link rel="stylesheet" type="text/css" href="css/topcoat-mobile-light.min.css">
     <title>Light Control</title>
     <script src="js/jquery-1.9.1.min.js"></script>
-
-    <link rel="stylesheet" href="css/principal.css">
+   <link rel="stylesheet" href="css/principal.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <script src="https://kit.fontawesome.com/f43dcd5878.js" crossorigin="anonymous"></script>
-
 
 </head>
 
@@ -33,7 +35,7 @@
             <input type="checkbox" id="check">
             <label for="check">
                 <i class="fas fa-bars" id="btn"></i>
-                <i class="fas fa-times" id="cancel"></i>
+                <i id="cancel"></i>
             </label>
 
             <div class="sidebar">
@@ -68,18 +70,20 @@
         <div id="temperaturaP">
         </div>
         <div id="humedadP">
+            <i class="fa-regular fa-droplet-degree"></i>
         </div>
         <div id="gasP">
         </div>
-        <div id="luzP"></div>
+        <div id="luzP">
+            <input type="range" min="0" max="3" orient="vertical" />
+        </div>
         <div id="title2">Velocidad del ventilador</div>
         <div id="velocidad">
-            <div id="vel1">1</div>
-            <div id="vel2">2</div>
-            <div id="vel3">3</div>
+            <button id="vel1">1</button>
+            <button id="vel2">2</button>
+            <button id="vel3">3</button>
             <button id="off"></button>
             <input type="button" name="das" id="boton" value="prueba">
-
         </div>
 
     </div>
@@ -112,31 +116,31 @@
     app.initialize();
 </script>
 <script>
-       function functionUno(){
+    function functionUno() {
         var x = document.getElementById("div1");
-        var y= document.getElementById("div2");
-        if(x.style.display=="none" || y.style.display=="block"){
+        var y = document.getElementById("div2");
+        if (x.style.display == "none" || y.style.display == "block") {
             y.style.display = "none";
-            x.style.display= "block";
-        }else{
-            x.style.display="block";
+            x.style.display = "block";
+        } else {
+            x.style.display = "block";
         }
     }
-    function functionDos(){
+    function functionDos() {
         var x = document.getElementById("div1");
-        var y= document.getElementById("div2");
-        if(x.style.display=="block" || y.style.display=="none"){
+        var y = document.getElementById("div2");
+        if (x.style.display == "block" || y.style.display == "none") {
             y.style.display = "block";
-            x.style.display= "none";
-        }else{
-            y.style.display="block"
+            x.style.display = "none";
+        } else {
+            y.style.display = "block"
         }
     }
-    element=document.getElementById("div1");
-    element2=document.getElementById("div2");
+    element = document.getElementById("div1");
+    element2 = document.getElementById("div2");
 
-    element.style.display= "block";
-    element2.style.display="none";
+    element.style.display = "block";
+    element2.style.display = "none";
 
 
 </script>
