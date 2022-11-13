@@ -11,7 +11,7 @@
         content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/topcoat-mobile-light.min.css">
-    <title>Light Control</title>
+    <title>Control de laboratorio</title>
     <script src="js/jquery-1.9.1.min.js"></script>
    <link rel="stylesheet" href="css/principal.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -43,14 +43,18 @@
                 <a href="#">
                     <i class="fas fa-qrcode"></i>
                     <label for="">Extractor</label>
-                </a>
+                    <input type="range" min="0" max="1" id="extra" value="0"/>                    
+                </a><br>
                 <a href="#">
                     <i class="far fa-question-circle"></i>
                     <label for="">Aspersores de agua</label>
+                    <input type="range" min="0" max="1" id="aspe" value="0" />                                        
                 </a>
-                <a href="#">
+                <a href="#"><br>
                     <i class="fas fa-sliders-h"></i>
                     <label for="">Puerta de emergencia</label>
+                    <input type="range" min="0" max="1" id="puerta" value="0" />                    
+
                 </a>
             </div>
             <li id="opcLab" class="nav-item">
@@ -67,45 +71,58 @@
     <div id="div1">
 
         <div id="title">Laboratorio de química</div>
-        <div id="temperaturaP">
-        </div>
-        <div id="humedadP">
-            <i class="fa-regular fa-droplet-degree"></i>
-        </div>
-        <div id="gasP">
-        </div>
+            <div id="temperaturaP"><br>
+                <center>
+                    <div id="temperatura">
+                        Flama
+                    </div>
+                </center>
+            </div>
+            <div id="humedadP"><br>
+                <center>
+                    <div id="humedad">
+                        Humedad
+                    </div>
+                </center>
+            </div>
+            <div id="gasP"><br>
+                <center>
+                    <div id="gassr">
+                        Gas
+                    </div>
+                </center>
+            </div>
         <div id="luzP">
-            <input type="range" min="0" max="3" orient="vertical" />
+            <input type="range" min="0" max="3" orient="vertical"
+            id="iluminacion" value="0" />
         </div>
         <div id="title2">Velocidad del ventilador</div>
         <div id="velocidad">
             <button id="vel1">1</button>
             <button id="vel2">2</button>
             <button id="vel3">3</button>
-            <button id="off"></button>
-            <input type="button" name="das" id="boton" value="prueba">
+            <button id="off">Apagar</button>
         </div>
 
     </div>
+    <!--Conexion-->
     <div id="div2">
         <div class="app">
-            <h1>Bluetooth Serial Chat</h1>
+            <h1>Conexion Bluetooth</h1>
             <div id="mainPage">
                 <ul id="deviceList">
                 </ul>
-                <button id="refreshButton">Refresh</button>
+                <button id="refreshButton">Recargar</button>
             </div>
 
             <div id="resultDiv">
+                
             </div>
             <div>
-
-                <input type="text" name="text" id="gas">
-                <input type="text" id="messageInput" value="Hello" />
-                <button id="sendButton">Send</button>
+                <button id="disconnectButton">Desconectar</button>
+                <div id="statusDiv"></div>
             </div>
-            <button id="disconnectButton">Disconnect</button>
-            <div id="statusDiv"></div>
+
         </div>
     </div>
 
