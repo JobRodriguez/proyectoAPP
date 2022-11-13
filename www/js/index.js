@@ -17,7 +17,6 @@
 /* global cordova, bluetoothSerial  */
 /* jshint browser: true , devel: true*/
 'use strict';
-
 var app = {
     initialize: function () {
         this.bindEvents();
@@ -31,7 +30,6 @@ var app = {
         }
         document.addEventListener('deviceready', this.onDeviceReady, false);
         refreshButton.addEventListener(TOUCH_START, this.refreshDeviceList, false);
-        sendButton.addEventListener(TOUCH_START, this.sendData, false);
         disconnectButton.addEventListener(TOUCH_START, this.disconnect, false);
         deviceList.addEventListener('touchstart', this.connect, false);
     },
@@ -58,7 +56,7 @@ var app = {
             if (cordova.platformId === 'windowsphone') {
                 // This is a temporary hack until I get the list tap working
                 var button = document.createElement('button');
-                button.innerHTML = "Connect";
+                button.innerHTML = "Desconectado";
                 button.addEventListener('click', app.connect, false);
                 button.dataset = {};
                 button.dataset.deviceId = device.id;
@@ -72,17 +70,17 @@ var app = {
         if (devices.length === 0) {
 
             option = document.createElement('option');
-            option.innerHTML = "No Bluetooth Devices";
+            option.innerHTML = "Sin dispositivos Bluetooth";
             deviceList.appendChild(option);
 
             if (cordova.platformId === "ios") { // BLE
                 app.setStatus("No Bluetooth Peripherals Discovered.");
             } else { // Android or Windows Phone
-                app.setStatus("Please Pair a Bluetooth Device.");
+                app.setStatus("Empareje un dispositivo Bluetooth.");
             }
 
         } else {
-            app.setStatus("Found " + devices.length + " device" + (devices.length === 1 ? "." : "s."));
+            app.setStatus("Encontrando " + devices.length + " dispositivos" + (devices.length === 1 ? "." : "s."));
         }
 
     },
@@ -92,7 +90,7 @@ var app = {
             bluetoothSerial.subscribe('\n', app.onData, app.onError);
 
             resultDiv.innerHTML = "";
-            app.setStatus("Connected");
+            app.setStatus("Conectado");
             app.showDetailPage();
         };
 
@@ -112,7 +110,9 @@ var app = {
         const splitString = data.split(" ");
 
         console.log(splitString);
-        resultDiv.innerHTML = "Gas = " + splitString[0] + "<br>Luz = " + splitString[2];
+        gassr.innerHTML = "Gas <br>" + splitString[0];
+        humedad.innerHTML = "Humedad <br>" + splitString[2];
+        temperatura.innerHTML = "Flama <br>" + splitString[4];
         ;
     },
 
@@ -143,8 +143,72 @@ var app = {
         alert("ERROR: " + reason); // real apps should use notification.alert
     }
 };
-$("#boton").click(function () {
-    app.sendToArduino("1");
-});
+
 ///////
 
+/*    
+      id="puerta"
+            */
+$("#vel1").click(function () {
+    app.sendToArduino("1");
+});
+$("#vel2").click(function () {
+    app.sendToArduino("2");
+});
+$("#vel3").click(function () {
+    app.sendToArduino("3");
+});
+$("#off").click(function () {
+    app.sendToArduino("4");
+});
+
+
+$("#iluminacion").on("input", function(){
+    var nIlu;
+    nIlu=iluminacion.value;
+    if (nIlu==0) {
+     app.sendToArduino("5");
+       
+ }else if(nIlu==1){
+    app.sendToArduino("6");
+ }else if(nIlu==2){
+    app.sendToArduino("7");
+ }else if(nIlu==3){
+    app.sendToArduino("8");
+ }
+});
+
+
+
+$("#extra").on("input", function(){
+    var vEx;
+    vEx=extra.value;
+    if (vEx==0) {
+     app.sendToArduino("9");
+       
+ }else{
+    app.sendToArduino("a");
+    }
+});
+
+$("#aspe").on("input", function(){
+    var vaspe;
+    vaspe=aspe.value;
+    if (vaspe==0) {
+     app.sendToArduino("b");
+       
+ }else{
+    app.sendToArduino("c");
+    }
+});
+
+$("#puerta").on("input", function(){
+    var vpuerta;
+    vpuerta=puerta.value;
+    if (vpuerta==0) {
+     app.sendToArduino("d");
+       
+ }else{
+    app.sendToArduino("e");
+    }
+});
