@@ -1,17 +1,22 @@
 #include <SoftwareSerial.h>
+#include <dht.h>
 
+#define dht_apin A0 
  
-int bluetoothTx = 4;  // TX-O pin of bluetooth mate, Arduino D2
-int bluetoothRx = 2;  // RX-I pin of bluetooth mate, Arduino D3
-int gas=A0;
-int foto=A1;
-int buz=5;
+int bluetoothTx = 2;  // TX-O pin of bluetooth mate, Arduino D2
+int bluetoothRx = 4;  // RX-I pin of bluetooth mate, Arduino D3
+int gas=A1;
+int flama=A2;
 char op;
+dht DHT;
+
+
 SoftwareSerial bluetooth(bluetoothTx, bluetoothRx);
  
 void setup() 
 { 
-  pinMode(gas,INPUT);  
+  pinMode(gas,INPUT);
+  pinMode(flama,INPUT);  
   Serial.begin(9600);
   setupBluetooth();
   Serial.println("\nChat Sparkfun Version\n");
@@ -30,13 +35,8 @@ void loop() {
 
   
     op=bluetooth.read();
-    if(op=='1'){
-        tone(buz,1000,5000);
-      delay(2000);
-    }else{
-      noTone(buz);
-    }
-      //sendData();
+
+    sendData();
 
   
 }
@@ -44,18 +44,22 @@ void loop() {
 
 
 void sendData() {
+    DHT.read11(dht_apin);
     int valuegas= analogRead(gas);
-    int valuefoto = analogRead(foto);
+    int valuehumedad =DHT.humidity;
+    int valueflama= analogRead(flama);
 
     bluetooth.print(valuegas);
     bluetooth.print("  ");
-    bluetooth.print(valuefoto);
-
+    bluetooth.print(valuehumedad);
+    bluetooth.print("  ");
+    bluetooth.print(valueflama);
  /* Serial.print("Gas: ");
-  Serial.println(valuegas);*/
-  /*Serial.print("Luz: ");
-  Serial.println(valuefoto);*/
-  delay(1000);
+  Serial.println(valuegas);
+  Serial.print("Humedad: ");
+  Serial.println(valuehumedad);
+  Serial.print("Flama: ");
+  Serial.println(valueflama); */
   bluetooth.write(0xA);
   bluetooth.flush();  
   
