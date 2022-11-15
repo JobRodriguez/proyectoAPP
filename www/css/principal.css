@@ -223,10 +223,7 @@ a:hover {
     background: linear-gradient(to left, var(--accent-color), var(--gradient-color));
 }
 
-.sidebar a i {
-    font-size: 23px;
-    margin-right: 16px;
-}
+
 
 .sidebar a span {
     letter-spacing: 1px;
@@ -315,3 +312,6 @@ p {
     color: #d6adff;
     margin: 0;
 }
+#extra{
+    width: 50px;
+ }
