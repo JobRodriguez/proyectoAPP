@@ -57,6 +57,8 @@ var app = {
                 // This is a temporary hack until I get the list tap working
                 var button = document.createElement('button');
                 button.innerHTML = "Desconectado";
+                var x = document.getElementById("div1");
+                x.innerHTML = "DESCONECTADO"
                 button.addEventListener('click', app.connect, false);
                 button.dataset = {};
                 button.dataset.deviceId = device.id;
@@ -72,15 +74,69 @@ var app = {
             option = document.createElement('option');
             option.innerHTML = "Sin dispositivos Bluetooth";
             deviceList.appendChild(option);
+            var x = document.getElementById("div1");
+            x.innerHTML= '<h4 style=" text-align: center; color= "ff0000";>DESCONECTADO</h4> <h4 style=" text-align: center; color= "ff0000";>Conecte al dispositio bluetooth</h4><i style= "margin-left: 100px; margin-top: 100px; font-size: 160px;" class="fa-brands fa-bluetooth"></i>'+
+            '<i style=" margin-top: 80px; position: absolute; font-size:80px ;" class="fa-solid fa-x"></i> ';
+            x.style.width="360px";
+            x.style.height="655px";
+            x.style.background="rgb(238, 160, 160)";
+            const menu= document.getElementById("btn");
+            const opcLab= document.getElementById("opcLab");
+            const check= document.getElementById("check");
+            check.id="nuevo";
+            menu.addEventListener('click', function(){
+                menu.disabled=true;
+                x.style.opacity=0.7;
+                setTimeout(function(){
+                    x.style.opacity=1;
+                    x.style.background="rgb(238, 160, 160)";
+                },200);
+            });
+            opcLab.addEventListener('click', function(){
+                opcLab.disabled=true;
+                x.style.opacity=0.7;
+                setTimeout(function(){
+                    x.style.opacity=1;
+                    x.style.background="rgb(238, 160, 160)";
+                },200);
+            });
 
             if (cordova.platformId === "ios") { // BLE
                 app.setStatus("No Bluetooth Peripherals Discovered.");
             } else { // Android or Windows Phone
                 app.setStatus("Empareje un dispositivo Bluetooth.");
+                var x = document.getElementById("div1");
+                x.innerHTML = "DESCONECTADO"
             }
 
         } else {
             app.setStatus("Encontrando " + devices.length + " dispositivos" + (devices.length === 1 ? "." : "s."));
+            var x = document.getElementById("div1");
+            x.innerHTML= '<h4 style=" text-align: center; color= "ff0000";>DESCONECTADO</h4> <h4 style=" text-align: center; color= "ff0000";>Conecte al dispositio bluetooth</h4><i style= "margin-left: 100px; margin-top: 100px; font-size: 160px;" class="fa-brands fa-bluetooth"></i>'+
+            '<i style=" margin-top: 80px; position: absolute; font-size:80px ;" class="fa-solid fa-x"></i> ';
+            x.style.width="360px";
+            x.style.height="655px";
+            x.style.background="rgb(238, 160, 160)";
+            const menu= document.getElementById("btn");
+            const opcLab= document.getElementById("opcLab");
+            const check= document.getElementById("check");
+            check.id="nuevo";
+            menu.addEventListener('click', function(){
+                menu.disabled=true;
+                x.style.opacity=0.7;
+                setTimeout(function(){
+                    x.style.opacity=1;
+                    x.style.background="rgb(238, 160, 160)";
+                },200);
+            });
+            opcLab.addEventListener('click', function(){
+                opcLab.disabled=true;
+                x.style.opacity=0.7;
+                setTimeout(function(){
+                    x.style.opacity=1;
+                    x.style.background="rgb(238, 160, 160)";
+                },200);
+            });
         }
 
     },
@@ -163,52 +219,78 @@ $("#off").click(function () {
 });
 
 
-$("#iluminacion").on("input", function(){
+$("#iluminacion").on("input", function () {
     var nIlu;
-    nIlu=iluminacion.value;
-    if (nIlu==0) {
-     app.sendToArduino("5");
-       
- }else if(nIlu==1){
-    app.sendToArduino("6");
- }else if(nIlu==2){
-    app.sendToArduino("7");
- }else if(nIlu==3){
-    app.sendToArduino("8");
- }
+    nIlu = iluminacion.value;
+    if (nIlu == 0) {
+        app.sendToArduino("5");
+
+    } else if (nIlu == 1) {
+        app.sendToArduino("6");
+    } else if (nIlu == 2) {
+        app.sendToArduino("7");
+    } else if (nIlu == 3) {
+        app.sendToArduino("8");
+    }
 });
 
 
 
-$("#extra").on("input", function(){
+$("#extra").on("input", function () {
     var vEx;
-    vEx=extra.value;
-    if (vEx==0) {
-     app.sendToArduino("9");
-       
- }else{
-    app.sendToArduino("a");
+    vEx = extra.value;
+    if (vEx == 0) {
+        app.sendToArduino("9");
+
+    } else {
+        app.sendToArduino("a");
     }
 });
 
-$("#aspe").on("input", function(){
+$("#aspe").on("input", function () {
     var vaspe;
-    vaspe=aspe.value;
-    if (vaspe==0) {
-     app.sendToArduino("b");
-       
- }else{
-    app.sendToArduino("c");
+    vaspe = aspe.value;
+    if (vaspe == 0) {
+        app.sendToArduino("b");
+
+    } else {
+        app.sendToArduino("c");
     }
 });
 
-$("#puerta").on("input", function(){
+$("#puerta").on("input", function () {
     var vpuerta;
-    vpuerta=puerta.value;
-    if (vpuerta==0) {
-     app.sendToArduino("d");
-       
- }else{
-    app.sendToArduino("e");
+    vpuerta = puerta.value;
+    if (vpuerta == 0) {
+        app.sendToArduino("d");
+
+    } else {
+        app.sendToArduino("e");
     }
 });
+// var x = document.getElementById("div1");
+// x.innerHTML= '<h4 style=" text-align: center; color= "ff0000";>DESCONECTADO</h4> <h4 style=" text-align: center; color= "ff0000";>Conecte al dispositio bluetooth</h4><i style= "margin-left: 100px; margin-top: 100px; font-size: 160px;" class="fa-brands fa-bluetooth"></i>'+
+// '<i style=" margin-top: 80px; position: absolute; font-size:80px ;" class="fa-solid fa-x"></i> ';
+// x.style.width="360px";
+// x.style.height="655px";
+// x.style.background="rgb(238, 160, 160)";
+// const menu= document.getElementById("btn");
+// const opcLab= document.getElementById("opcLab");
+// const check= document.getElementById("check");
+// check.id="nuevo";
+// menu.addEventListener('click', function(){
+//     menu.disabled=true;
+//     x.style.opacity=0.7;
+//     setTimeout(function(){
+//         x.style.opacity=1;
+//         x.style.background="rgb(238, 160, 160)";
+//     },200);
+// });
+// opcLab.addEventListener('click', function(){
+//     opcLab.disabled=true;
+//     x.style.opacity=0.7;
+//     setTimeout(function(){
+//         x.style.opacity=1;
+//         x.style.background="rgb(238, 160, 160)";
+//     },200);
+// });
