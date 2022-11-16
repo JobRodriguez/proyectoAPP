@@ -111,32 +111,6 @@ var app = {
 
         } else {
             app.setStatus("Encontrando " + devices.length + " dispositivos" + (devices.length === 1 ? "." : "s."));
-            var x = document.getElementById("div1");
-            x.innerHTML= '<h4 style=" text-align: center; color= "ff0000";>DESCONECTADO</h4> <h4 style=" text-align: center; color= "ff0000";>Conecte al dispositio bluetooth</h4><i style= "margin-left: 100px; margin-top: 100px; font-size: 160px;" class="fa-brands fa-bluetooth"></i>'+
-            '<i style=" margin-top: 80px; position: absolute; font-size:80px ;" class="fa-solid fa-x"></i> ';
-            x.style.width="360px";
-            x.style.height="655px";
-            x.style.background="rgb(238, 160, 160)";
-            const menu= document.getElementById("btn");
-            const opcLab= document.getElementById("opcLab");
-            const check= document.getElementById("check");
-            check.id="nuevo";
-            menu.addEventListener('click', function(){
-                menu.disabled=true;
-                x.style.opacity=0.7;
-                setTimeout(function(){
-                    x.style.opacity=1;
-                    x.style.background="rgb(238, 160, 160)";
-                },200);
-            });
-            opcLab.addEventListener('click', function(){
-                opcLab.disabled=true;
-                x.style.opacity=0.7;
-                setTimeout(function(){
-                    x.style.opacity=1;
-                    x.style.background="rgb(238, 160, 160)";
-                },200);
-            });
         }
 
     },
