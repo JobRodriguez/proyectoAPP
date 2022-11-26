@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="format-detection" content="telephone=no" />
@@ -15,22 +14,18 @@
     <script src="js/jquery-1.9.1.min.js"></script>
     <link rel="stylesheet" href="css/principal.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <script src="https://kit.fontawesome.com/86b80756d0.js" crossorigin="anonymous"></script>
-
 </head>
-
 <body>
     <script>
         function logo();
     </script>
     <div id="cuerpoTotal">
         <div id="encabezado"></div>
-
         <div id="apartados">
             <ul class="nav nav-tabs">
                 <input type="checkbox" id="check">
@@ -78,7 +73,6 @@
                     <a class="nav-link" aria-current="page" onclick="functionUno()"><i id="lab"
                             class="fa-solid fa-flask-vial"></i></a>
                 </li>
-
                 <li id="opcConect" class="nav-item">
                     <a class="nav-link" onclick="functionDos()" tabindex="-1" aria-disabled="true"><i id="conect"
                             class="fa-brands fa-bluetooth"></i></a>
@@ -86,7 +80,6 @@
             </ul>
         </div>
         <div id="div1">
-
             <div id="title">Laboratorio de química</div>
             <div id="temperaturaP"><br>
                 <center>
@@ -126,7 +119,6 @@
                 <button id="vel3">3</button>
                 <button id="off">Apagar</button>
             </div>
-
         </div>
         <!--Conexion-->
         <div id="div2">
@@ -137,19 +129,15 @@
                     </ul>
                     <button id="refreshButton">Recargar</button>
                 </div>
-
                 <div id="resultDiv">
-
                 </div>
                 <div>
                     <button id="disconnectButton">Desconectar</button>
                     <div id="statusDiv"></div>
                 </div>
-
             </div>
         </div>
     </div>
-
 </body>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
@@ -179,11 +167,8 @@
     }
     element = document.getElementById("div1");
     element2 = document.getElementById("div2");
-
     element.style.display = "none";
     element2.style.display = "block";
-
-
 </script>
 
 
