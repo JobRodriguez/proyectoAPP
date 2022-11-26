@@ -268,3 +268,10 @@ $("#puerta").on("input", function () {
 //         x.style.background="rgb(238, 160, 160)";
 //     },200);
 // });
+function logo(){
+    var cuerpo = document.getElementById("cuerpoTotal");
+            setTimeout(function(){
+                cuerpo.style.opacity=1;
+                cuerpo.innerHTML=' <img id="logoApp" src="./css//Captura de pantalla_20221125_073050.png" alt=""> ';
+            },1000);
+} 

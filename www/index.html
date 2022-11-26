@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="css/topcoat-mobile-light.min.css">
     <title>Control de laboratorio</title>
     <script src="js/jquery-1.9.1.min.js"></script>
-   <link rel="stylesheet" href="css/principal.css">
+    <link rel="stylesheet" href="css/principal.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
     <!-- CSS only -->
@@ -25,53 +25,54 @@
 </head>
 
 <body>
-    <div id="encabezado"></div>
+    <script>
+        function logo();
+    </script>
+    <div id="cuerpoTotal">
+        <div id="encabezado"></div>
 
-    <div id="apartados">
-        <ul class="nav nav-tabs">
-            <input type="checkbox" id="check">
-            <label  for="check">
-                <i class="fas fa-bars" id="btn"></i>
-                <i id="cancel"></i>
-            </label>
+        <div id="apartados">
+            <ul class="nav nav-tabs">
+                <input type="checkbox" id="check">
+                <label for="check">
+                    <i class="fas fa-bars" id="btn"></i>
+                    <i id="cancel"></i>
+                </label>
 
-            <div class="sidebar">
-                <header>Opciones manuales</header>
-                <a href="#">
-                    <i class="fa-solid fa-sensor-cloud"></i>
-                    <label for="">Extractor</label>
-                    <input  type="range" min="0" max="1" id="extra" value="0"/>                    
-                </a><br>
-                <a href="#">
-                    <i class="far fa-question-circle"></i>
-                    <label for="">Aspersores de agua</label>
-                    <input type="range" min="0" max="1" id="extra" value="0" />                                        
-                </a>
-                <a href="#"><br>
-                    <i class="fas fa-sliders-h"></i>
-                    <label for="">Puerta de emergencia</label>
-                    <input type="range" min="0" max="1" id="extra" value="0" />                    
+                <div class="sidebar">
+                    <header>Opciones manuales</header>
+                    <a href="#">
+                        <label style="margin-left: -2 nb 0px;" for="">Extractor</label>
+                        <input class="extractor" type="range" min="0" max="1" id="extra" value="0" />
+                    </a>
+                    <a href="#">
+                        <label style="margin-left: -2px; margin-top: 10px; " for="">Aspersores de agua</label>
+                        <input class="aspersor" type="range" min="0" max="1" id="extra" value="0" />
+                    </a>
+                    <a href="#"><br>
+                        <label style="margin-left: -2 nb 0px;" for="">Puerta de emergencia</label>
+                        <input class="puertaE" type="range" min="0" max="1" id="extra" value="0" />
 
-                </a>
-            </div>
-            <li id="opcLab" class="nav-item">
-                <a class="nav-link" aria-current="page" onclick="functionUno()"><i id="lab"
-                        class="fa-solid fa-flask-vial"></i></a>
-            </li>
+                    </a>
+                </div>
+                <li id="opcLab" class="nav-item">
+                    <a class="nav-link" aria-current="page" onclick="functionUno()"><i id="lab"
+                            class="fa-solid fa-flask-vial"></i></a>
+                </li>
 
-            <li id="opcConect" class="nav-item">
-                <a class="nav-link" onclick="functionDos()" tabindex="-1" aria-disabled="true"><i id="conect"
-                        class="fa-brands fa-bluetooth"></i></a>
-            </li>
-        </ul>
-    </div>
-    <div id="div1">
+                <li id="opcConect" class="nav-item">
+                    <a class="nav-link" onclick="functionDos()" tabindex="-1" aria-disabled="true"><i id="conect"
+                            class="fa-brands fa-bluetooth"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div id="div1">
 
-        <div id="title">Laboratorio de química</div>
+            <div id="title">Laboratorio de química</div>
             <div id="temperaturaP"><br>
                 <center>
                     <div id="temperatura">
-                        <label id="tituloCuadro" for="">temperatura</label>
+                        <label id="tituloCuadro" for="">Temperatura</label>
                         <br>
                         <i id="iconCuadro" class="fa-solid fa-temperature-high"></i>
                     </div>
@@ -82,7 +83,7 @@
                     <div id="humedad">
                         <label id="tituloCuadro" for="">Humedad</label>
                         <br>
-                        <i class="fa-sharp fa-solid fa-droplet-percent"></i>                                        
+                        <i class="fa-sharp fa-solid fa-droplet-percent"></i>
                     </div>
                 </center>
             </div>
@@ -95,37 +96,38 @@
                     </div>
                 </center>
             </div>
-        <div id="luzP">
-            <input type="range" min="0" max="3" orient="vertical"
-            id="iluminacion" value="0" />
+            <div id="luzP">
+                <label id="tituloCuadroLuz" for="">Iluminación</label>
+                <input type="range" min="0" max="3" orient="vertical" id="iluminacion" value="0" />
+            </div>
+            <div id="title2">Velocidad del ventilador</div>
+            <div id="velocidad">
+                <button id="vel1">1</button>
+                <button id="vel2">2</button>
+                <button id="vel3">3</button>
+                <button id="off">Apagar</button>
+            </div>
+
         </div>
-        <div id="title2">Velocidad del ventilador</div>
-        <div id="velocidad">
-            <button id="vel1">1</button>
-            <button id="vel2">2</button>
-            <button id="vel3">3</button>
-            <button id="off">Apagar</button>
-        </div>
+        <!--Conexion-->
+        <div id="div2">
+            <div class="app">
+                <h1>Conexion Bluetooth</h1>
+                <div id="mainPage">
+                    <ul id="deviceList">
+                    </ul>
+                    <button id="refreshButton">Recargar</button>
+                </div>
 
-    </div>
-    <!--Conexion-->
-    <div id="div2">
-        <div class="app">
-            <h1>Conexion Bluetooth</h1>
-            <div id="mainPage">
-                <ul id="deviceList">
-                </ul>
-                <button id="refreshButton">Recargar</button>
-            </div>
+                <div id="resultDiv">
 
-            <div id="resultDiv">
-                
-            </div>
-            <div>
-                <button id="disconnectButton">Desconectar</button>
-                <div id="statusDiv"></div>
-            </div>
+                </div>
+                <div>
+                    <button id="disconnectButton">Desconectar</button>
+                    <div id="statusDiv"></div>
+                </div>
 
+            </div>
         </div>
     </div>
 
