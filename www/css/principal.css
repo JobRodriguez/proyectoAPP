@@ -350,7 +350,12 @@ p {
 }
 
 .aspersor {
+    position: absolute;
     margin-top: 90px;
     margin-left: -140px;
     background-color: #000000;
+}
+.tituloAs{
+    position: absolute;
+    margin-top: -40px;
 }
