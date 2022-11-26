@@ -2,7 +2,8 @@ body {
     margin: 0%;
     background-image: linear-gradient(-45deg, #000000 0%, #aab9b5 100%);
 }
-#logoApp{
+
+#logoApp {
     margin-left: -55px;
     width: 470px;
     height: 500px;
@@ -15,13 +16,14 @@ body {
     background-color: rgb(0, 0, 0);
     margin-bottom: 10px;
 }
-#apartados{
+
+#apartados {
     background-color: #484545;
     margin-top: -6px;
 }
 
 #linea {
-    margin-top:-1px;
+    margin-top: -1px;
     width: 100%;
     height: 10px;
     background-color: black;
@@ -33,7 +35,7 @@ body {
     font-size: 30px;
 }
 
-#opcBar{
+#opcBar {
     width: 80px;
 }
 
@@ -89,7 +91,7 @@ body {
     margin-left: 20px;
     width: 125px;
     height: 100px;
-    background-image: linear-gradient(-45deg,#f2aff9 0%, #00faaf 100%);
+    background-image: linear-gradient(-45deg, #f2aff9 0%, #00faaf 100%);
 }
 
 #humedadP {
@@ -99,7 +101,7 @@ body {
     width: 125px;
     height: 100px;
 
-    background-image: linear-gradient(-45deg,#f2aff9 0%, #00faaf 100%);
+    background-image: linear-gradient(-45deg, #f2aff9 0%, #00faaf 100%);
 }
 
 #gasP {
@@ -108,10 +110,11 @@ body {
     margin-left: 20px;
     width: 125px;
     height: 100px;
-    
-    background-image: linear-gradient(-45deg,#f2aff9 0%, #00faaf 100%);
+
+    background-image: linear-gradient(-45deg, #f2aff9 0%, #00faaf 100%);
 }
-#tituloCuadroLuz{
+
+#tituloCuadroLuz {
     margin-top: 20px;
     margin-left: 50px;
 }
@@ -122,26 +125,27 @@ body {
     margin-left: 160px;
     width: 180px;
     height: 330px;
-    background-image: linear-gradient(-45deg,#f2aff9 0%, #00faaf 100%);
+    background-image: linear-gradient(-45deg, #f2aff9 0%, #00faaf 100%);
 }
 
-input[type=range][orient=vertical]
-{
+input[type=range][orient=vertical] {
     margin-top: 60px;
     position: absolute;
     margin-left: -50px;
-    writing-mode: bt-lr; /* IE */
-    -webkit-appearance: slider-vertical; /* WebKit */
+    writing-mode: bt-lr;
+    /* IE */
+    -webkit-appearance: slider-vertical;
+    /* WebKit */
     width: 8px;
     height: 175px;
     padding: 0 5px;
-     transform: scale(1.);
+    transform: scale(1.);
 }
 
 #velocidad {
     border-radius: 20px;
     margin: 10px;
-    background-image: linear-gradient(-1deg,#593261 0%, #00faaf 100%);
+    background-image: linear-gradient(-1deg, #593261 0%, #00faaf 100%);
     width: 340px;
     height: 190px;
 }
@@ -184,7 +188,7 @@ input[type=range][orient=vertical]
     width: 120px;
     height: 40px;
     border-radius: 20px;
-    margin-top:5px;
+    margin-top: 5px;
     border: solid rgb(255, 2, 2) 5px;
     margin-left: 111px;
     background-color: #7a7776;
@@ -236,6 +240,7 @@ input[type=range][orient=vertical]
     transition: all .5s ease;
     text-decoration: none;
 }
+
 a:hover {
     border-left: 5px solid var(--accent-color);
     color: #fff;
@@ -253,7 +258,7 @@ a:hover {
     display: none;
 }
 
-label #btn{
+label #btn {
     position: relative;
     cursor: pointer;
     color: #70f9c7;
@@ -272,6 +277,7 @@ label #btn{
     line-height: 45px;
     transition: all .5s ease;
 }
+
 label #cancel {
     position: absolute;
     opacity: 0;
@@ -331,16 +337,20 @@ p {
     color: #d6adff;
     margin: 0;
 }
-#extra{
+
+#extra {
     width: 50px;
     transform: scale(2);
- }
- .extractor{
+}
+
+.extractor {
     position: absolute;
     margin-top: 50px;
     margin-left: -70px
- }
- .aspersor{
-    margin-top: 60px;
-    margin-left: -30px;
- }
+}
+
+.aspersor {
+    margin-top: 90px;
+    margin-left: -140px;
+    background-color: #000000;
+}
