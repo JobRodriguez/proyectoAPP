@@ -342,6 +342,14 @@ p {
     width: 50px;
     transform: scale(2);
 }
+#aspe {
+    width: 50px;
+    transform: scale(2);
+}
+#puerta {
+    width: 50px;
+    transform: scale(2);
+}
 
 .extractor {
     position: absolute;
