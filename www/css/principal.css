@@ -91,27 +91,28 @@ body {
     margin-left: 20px;
     width: 125px;
     height: 100px;
-    background-image: linear-gradient(-45deg, #bdbaee 0%, #8ec3cf 100%);
+    background-image: linear-gradient(-45deg, #6b6897 0%, #8ec3cf 100%);
     border: solid rgb(226, 226, 226) 1px;
 }
 
 #humedadP {
     border-radius: 10px;
+    border: solid rgb(226, 226, 226) 1px;
     margin-top: 15px;
     margin-left: 20px;
     width: 125px;
     height: 100px;
-    background-image: linear-gradient(-45deg, #04caf2 0%, #73c3ab 100%);
+    background-image: linear-gradient(-45deg, #6b6897 0%, #8ec3cf 100%);
 }
 
 #gasP {
     border-radius: 10px;
+    border: solid rgb(226, 226, 226) 1px;
     margin-top: 15px;
     margin-left: 20px;
     width: 125px;
     height: 100px;
-
-    background-image: linear-gradient(-45deg, #ffb578 0%, #5fb99e 100%);
+    background-image: linear-gradient(-45deg, #6b6897 0%, #8ec3cf 100%);
 }
 
 #tituloCuadroLuz {
@@ -123,9 +124,10 @@ body {
     border-radius: 10px;
     margin-top: -330px;
     margin-left: 160px;
+    border: solid rgb(226, 226, 226) 1px;
     width: 180px;
     height: 330px;
-    background-image: linear-gradient(-100deg, #dadbba 0%, #88b5d3 100%);
+    background-image: linear-gradient(-45deg, #6b6897 0%, #8ec3cf 100%);
 }
 
 input[type=range][orient=vertical] {
@@ -145,18 +147,21 @@ input[type=range][orient=vertical] {
 #velocidad {
     border-radius: 20px;
     margin: 10px;
-    background-image: linear-gradient(-1deg, #8d7f7f 0%, #746666 100%);
+    background-image: linear-gradient(-1deg, #56595b6f 0%, #91878792 100%);
     width: 340px;
     height: 190px;
+    border: solid rgb(226, 226, 226) 1px;
+
 }
 
 #vel1 {
     width: 80px;
     height: 40px;
     margin-top: 4px;
+    border: solid rgb(226, 226, 226) 1px;
     margin-left: 130px;
     background-color: #c9c6c5;
-    background-image: linear-gradient(-1deg, #6eb3e4 0%, #a5c2d6 100%);
+    background-image: linear-gradient(-1deg, #c5dff0 0%, #acb2b5 100%);
     text-align: center;
     border: none;
     border-radius: 10px;
@@ -165,10 +170,10 @@ input[type=range][orient=vertical] {
 #vel2 {
     width: 80px;
     height: 40px;
+    border: solid rgb(226, 226, 226) 1px;
     margin-top: 10px;
     margin-left: 130px;
-    border: none;
-    background-image: linear-gradient(-1deg, #e4da6e 0%, #f5f3d8 100%);
+    background-image: linear-gradient(-1deg, #c5dff0 0%, #acb2b5 100%);
     text-align: center;
     border-radius: 10px;
 }
@@ -178,8 +183,8 @@ input[type=range][orient=vertical] {
     height: 40px;
     margin-top: 10px;
     margin-left: 130px;
-    border: none;
-    background-image: linear-gradient(-1deg, #e4956e 0%, #f5d8bf 100%);
+    border: solid rgb(226, 226, 226) 1px;
+    background-image: linear-gradient(-1deg, #c5dff0 0%, #acb2b5 100%);
     text-align: center;
     border-radius: 10px;
 }
@@ -189,9 +194,9 @@ input[type=range][orient=vertical] {
     height: 40px;
     border-radius: 20px;
     margin-top: 5px;
-    border: none;
+    border: solid rgb(226, 226, 226) 1px;
     margin-left: 111px;
-    background-image: linear-gradient(-1deg, #cd9191 0%, #c7c7bf 100%);
+    background-image: linear-gradient(-1deg, #c9aeae 0%, #c7c7bf 100%);
 
 }
 
@@ -223,7 +228,7 @@ input[type=range][orient=vertical] {
     color: #353535;
     line-height: 70px;
     text-align: center;
-    background-image: linear-gradient(-45deg, #4f7b84 0%, #56b9a2 100%);
+    background-image: linear-gradient(-45deg, #4f7b84 0%, #4f786e 100%);
     user-select: none;
     font-family: 'Lato', sans-serif;
 }
